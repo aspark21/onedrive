@@ -97,6 +97,8 @@ class converter implements \core_files\converter_interface {
 
         $behaviour = ['item' => ["@microsoft.graph.conflictBehavior" => "rename"]];
 
+        $response = $service->call('create_upload', $params, json_encode($behaviour));
+
         if (empty($response->uploadUrl)) {
             $conversion->set('status', conversion::STATUS_FAILED);
             $conversion->set('statusmessage', get_string('uploadprepfailed', 'fileconverter_onedrive'));
